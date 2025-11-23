@@ -89,13 +89,18 @@ CORS_ALLOWED_ORIGINS = [
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
+if os.environ.get('AM_I_IN_DOCKER'):
+    DB_HOST = 'todomysql'
+else:
+    DB_HOST = '127.0.0.1'
+
 DATABASES = {
     "default": {
         'ENGINE': env('DB_ENGINE'),
         'NAME': env('DB_NAME'),
         'USER': env('DB_USER'),
         'PASSWORD': env('DB_PASSWORD'),
-        'HOST': env('DB_HOST'),
+        'HOST': DB_HOST,
         'PORT': env('DB_PORT'),
     }
 }

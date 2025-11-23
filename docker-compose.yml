@@ -28,6 +28,8 @@ services:
         condition: service_healthy
     env_file:
       - ./django-backend/.env
+    environment:
+      - AM_I_IN_DOCKER=true
 
   frontend:
     build: ./react-frontend

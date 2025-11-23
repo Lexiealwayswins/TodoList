@@ -1,9 +1,14 @@
 # ==== Build Stage ====
 FROM python:3.11-slim AS builder
+
+# install build dependencies for uWSGI
+# (build-essential includes make, gcc, g++, etc.)
+RUN apt-get update && apt-get install -y build-essential gcc
+
 WORKDIR /app
 RUN pip install --upgrade pip
-COPY django-backend/requirements.txt .
-RUN pip install --user -r requirements.txt
+COPY requirements*.txt .
+RUN pip install --user -r requirements-prod.txt
 
 # ==== Final Image（< 80MB） ====
 FROM python:3.11-slim
@@ -14,13 +19,13 @@ COPY --from=builder /root/.local /root/.local
 ENV PATH=/root/.local/bin:$PATH
 
 # Copy application code
-COPY django-backend/ .
+COPY . .
 
 # Collect static files(optional)
 RUN python manage.py collectstatic --noinput || echo "No static files"
 
 # uWSGI configuration
-COPY django-backend/uwsgi.ini /app/uwsgi.ini
+COPY uwsgi.ini /app/uwsgi.ini
 
 EXPOSE 8000
 CMD ["uwsgi", "--ini", "uwsgi.ini"]

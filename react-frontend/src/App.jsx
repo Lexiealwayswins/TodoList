@@ -13,7 +13,6 @@ function App() {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(true);
 
-
   useEffect(() => {
     fetchTodos()
       .then(res => setTodos(res.data))

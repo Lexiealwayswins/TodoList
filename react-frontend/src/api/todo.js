@@ -1,7 +1,12 @@
 import axios from 'axios';
 
-const TODOS_URL = 'http://localhost:8000/api/todos/';
-const TODO_URL = 'http://localhost:8000/api/todo';
+// development urls
+// const TODOS_URL = 'http://localhost:8000/api/todos/';
+// const TODO_URL = 'http://localhost:8000/api/todo';
+
+// production urls
+const TODOS_URL = 'api/todos/';
+const TODO_URL = 'api/todo';
 
 export const fetchTodos = () => axios.get(TODOS_URL + '?_limit=10');
 
