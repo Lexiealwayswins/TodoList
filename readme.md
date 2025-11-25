@@ -1,7 +1,7 @@
-# Todo List Fullstack – Vite + React + Django + MySQL  
-**Production-ready full-stack Todo Dashboard with Docker & Nginx + uWSGI**
+# Task Dashboard Fullstack – Vite + React + Django + MySQL  
+**Production-ready full-stack Task Dashboard with Docker & Nginx + uWSGI**
 
-A clean, modern, full-stack Todo application that demonstrates best practices for both development and production deployment.
+A clean, modern, full-stack Task Dashboard application that demonstrates best practices for both development and production deployment.
 
 Live demo ready in **one command**.
 
